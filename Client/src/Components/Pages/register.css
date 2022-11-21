@@ -1,0 +1,12 @@
+span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root{
+    font-size: 14px;
+}
+.agreeRegister:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* .textfieldlabel{
+    color: black !important;
+    position: relative;
+    margin-bottom: 10px;
+} */
