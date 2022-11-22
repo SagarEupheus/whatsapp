@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 import "./register.css"
 
 const Register = () => {
@@ -17,10 +18,24 @@ const Register = () => {
   const [Email, setEmail] = useState()
   const [Password, setPassword] = useState()
   const [ConfirmPss,setConfirmPss ] = useState()
+
+
+
   // send data 
-  const registerData =()=>{
-    console.log(Name, Email, Password, ConfirmPss)
-  }
+  const registerData = async ()=>{
+    
+    const result = await axios('http://localhost:8000/register', {
+      method: 'POST',
+      body: JSON.stringify({Name,Email,Password,ConfirmPss}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+
+    result = await result.json()
+    console.log(result)
+  
+}
   return (
     <>
       <div className="px-6 h-full text-gray-800 pt-10">

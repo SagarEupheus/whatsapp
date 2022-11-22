@@ -1,32 +1,21 @@
-require("dotenv").config();
-require('./routes/users')
-
-const cors = require('cors')
-
-
-const express = require("express");
-const  mongoose  = require('mongoose');
-
+const express = require('express');
+const bodyParser = require('body-parser');
+const route = require('./routes/router');
+const { default: mongoose } = require('mongoose');
 const app = express();
 
-app.use(express.json())
-app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const User = require("./db/config")
-
-const port = process.env.PORT;
-
-
-// load rOUTER mODULES
-app.use('/user',User)
-
-app.listen(port, () => {
-  console.log(`Server is running on port  ${port}`);
-});
-
-mongoose.connect('mongodb://localhost:27017/whatsapp',{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,  
-},()=>{
-    console.log("db connected")
+mongoose.connect("mongodb+srv://Aman300:ByXZ2qfTNQNWF7Uj@cluster0.o4rcy.mongodb.net/eupes-DB?retryWrites=true&w=majority", {
+    useNewUrlParser: true
 })
+.then(() => console.log("mongo dB is connected ................."))  
+.catch(err => console.log(err))
+
+app.use('/',route);
+
+
+app.listen(process.env.PORT || 8000 , function(){
+    console.log('express app running on this port ' + (process.env.PORT || 8000))
+});
