@@ -22,20 +22,29 @@ const Register = () => {
 
 
   // send data 
-  const registerData = async ()=>{
-    
-    const result = await axios('http://localhost:8000/register', {
-      method: 'POST',
-      body: JSON.stringify({Name,Email,Password,ConfirmPss}),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-
-    result = await result.json()
-    console.log(result)
+  const registerData =(e)=>{
+    e.preventDefault();
+    const registerData = {
+      Name,
+      Email,
+      Password,
+      ConfirmPss
+    };
+    console.log(registerData);
   
 }
+
+axios
+.post("http://localhost:8000/register", registerData)
+.then((res) => {
+  console.log(res);
+  alert("register successfully!!!")
+})
+.catch((error) => {
+  console.log(error);
+});
+
+
   return (
     <>
       <div className="px-6 h-full text-gray-800 pt-10">
